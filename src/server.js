@@ -1,10 +1,26 @@
 const { ApolloServer, gql } = require("apollo-server"); 
 
+// hacker newsの１つ１つの投稿について
+let links = [
+  {
+    id: "link-0",
+    description: "GraphQL練習",
+    url: "google.com"
+  }
+]
+
 // GraphQLスキーマ定義
 // !について、絶対nullではないという意味
 const typeDefs = gql`
   type Query {
-    info: String! 
+    info: String!
+    feed: [Link]!
+  }
+
+  type Link {
+    id: ID!
+    description: String!
+    url: String!
   }
 `;
 
@@ -12,6 +28,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     info: () =>  "HackerNewsクローン",
+    feed: () => links,
   }
 };
 
