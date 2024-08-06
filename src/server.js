@@ -1,9 +1,10 @@
 const { ApolloServer, gql } = require("apollo-server"); 
 
 // GraphQLスキーマ定義
+// !について、絶対nullではないという意味
 const typeDefs = gql`
   type Query {
-    info: String! //絶対nullではないという意味
+    info: String! 
   }
 `;
 
@@ -13,3 +14,12 @@ const resolvers = {
     info: () =>  "HackerNewsクローン",
   }
 };
+
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+server
+  .listen()
+  .then(({ url }) => console.log(`${url}でサーバーを起動中・・・`));
