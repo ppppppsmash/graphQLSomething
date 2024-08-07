@@ -10,7 +10,19 @@ http://localhost:4000
 ```
 # Write your query or mutation here
 query {
+  feed
+}
+
+query {
   feed {
+    id
+    description
+    url
+  }
+}
+
+mutation {
+  post(url: "https://yahoo.co.jp", description: "テキスト") {
     id
     description
     url

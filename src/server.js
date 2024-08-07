@@ -39,7 +39,7 @@ const resolvers = {
       let idCount = links.length;
 
       const link = {
-        id: `link-${idCount}++`,
+        id: `link-${idCount++}`,
         description: args.description,
         url: args.url,
       };
