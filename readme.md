@@ -32,3 +32,6 @@ mutation {
 
 ### hacker news for developer
 https://news.ycombinator.com/
+
+npx prisma init
+npx prisma migrate dev
