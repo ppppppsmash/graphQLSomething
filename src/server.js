@@ -2,7 +2,7 @@ const { ApolloServer, gql } = require("apollo-server");
 const fs = require("fs");
 const path = require("path");
 
-const { PrismaClient } = require("@psisma/client");
+const { PrismaClient } = require("@prisma/client");
 
 const prisma = new PrismaClient();
 
