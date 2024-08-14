@@ -19,6 +19,7 @@ model Link {
   createdAt   DateTime @default(now())
   description String
   url         String
+  // 認証用
   postedBy    User? @relation(fields: [postedById], references: [id]) // LinkモデルのpostedByフィールドは、Userモデルとのリレーション（関係）を表しています。このフィールドは、LinkがどのUserによって投稿されたかを示すために使われる。
   postedById  Int? // foreign key Userモデルのidフィールドを参照している
 }

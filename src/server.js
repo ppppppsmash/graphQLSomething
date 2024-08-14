@@ -14,6 +14,7 @@ const resolvers = {
       return context.prisma.link.findMany();
     }
   },
+
   Mutation: {
     post: (parent, args, context) => {
       const newLink = context.prisma.link.create({
