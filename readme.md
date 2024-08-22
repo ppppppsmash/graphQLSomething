@@ -28,6 +28,30 @@ mutation {
     url
   }
 }
+
+mutation {
+signup(email: "pppppp@gmail.com", password: "xxx", name: "kurosawa") {
+  token
+  user {
+    id
+  }
+}
+}
+
+mutation {
+  login(email: "pppppp@gmail.com", password: "xxx") {
+    token
+    user {
+      id
+      email
+      links {
+        url
+        description
+      }
+    }
+  }
+}
+
 ```
 
 ### hacker news for developer

@@ -3,7 +3,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const APP_SECRET = require("../utils");
+const { APP_SECRET } = require("../utils");
 
 // ユーザの新規登録リゾルバ
 async function signup(parent, args, context) {
@@ -133,6 +133,7 @@ async function login(parent, args, context) {
 
 // ニュース投稿時リゾルバ
 async function post(parent, args, context) {
+  // ./src/server.js ApolloServerのcontextにuserIdを追加している
   const { userId } = context;
 
   return await context.prisma.link.create({
