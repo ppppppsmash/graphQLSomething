@@ -136,14 +136,19 @@ async function post(parent, args, context) {
   // ./src/server.js ApolloServerのcontextにuserIdを追加している
   const { userId } = context;
 
+  // ユーザーが認証されているか確認
+  if (!userId) {
+    throw new Error("投稿するにはログインが必要です");
+  }
+
   return await context.prisma.link.create({
     data: {
       url: args.url,
       description: args.description,
       postedBy: { connect: { id: userId }}
     }
-  })
-};
+  });
+}
 
 module.exports = {
   signup,

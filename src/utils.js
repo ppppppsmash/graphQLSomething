@@ -11,7 +11,7 @@ function getTokenPayload(token) {
 function getUserId(req, authToken) {
   if (req) {
     // ヘッダーの確認
-    const authHeader = req.headers.aut_horization;
+    const authHeader = req.headers.authorization;
 
     // 権限があるなら
     if (authHeader) {
