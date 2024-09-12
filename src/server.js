@@ -11,6 +11,7 @@ const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
 const Link = require("./resolvers/Link");
 const User = require("./resolvers/User");
+const Subscription = require("./resolvers/Subscription");
 
 // サブスクリプション
 // Publisher送信者とSubscriber受信者の関係
@@ -23,6 +24,7 @@ const pubsub = new PubSub();
 const resolvers = {
   Query,
   Mutation,
+  Subscription,
   Link,
   User,
 };
