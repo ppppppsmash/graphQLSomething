@@ -30,12 +30,12 @@ mutation {
 }
 
 mutation {
-signup(email: "pppppp@gmail.com", password: "xxx", name: "kurosawa") {
-  token
-  user {
-    id
+  signup(email: "pppppp@gmail.com", password: "xxx", name: "kurosawa") {
+    token
+    user {
+      id
+    }
   }
-}
 }
 
 mutation {
@@ -51,6 +51,30 @@ mutation {
     }
   }
 }
+
+
+// リアルタイム通信
+mutation {
+  post(url: "yahoo.com", description: "Yahooサイト") {
+    id
+    description
+    url
+  }
+}
+
+subscription {
+  newLink {
+    id
+    url
+    description
+    postedBy {
+			id
+      name
+      email
+    }
+  }
+}
+// ↑リアルタイム通信
 
 ```
 
