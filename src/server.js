@@ -12,6 +12,13 @@ const Mutation = require("./resolvers/Mutation");
 const Link = require("./resolvers/Link");
 const User = require("./resolvers/User");
 
+// サブスクリプション
+// Publisher送信者とSubscriber受信者の関係
+const { PubSub } = require("apollo-server");
+const pubsub = new PubSub();
+
+
+
 // リゾルバ関数、typeDefsの型に対して、何かの値を与える
 const resolvers = {
   Query,
@@ -28,6 +35,7 @@ const server = new ApolloServer({
     return {
       ...req,
       prisma,
+      pubsub,
       userId: req && req.headers.authorization ? getUserId(req) : null,
     }
   }
