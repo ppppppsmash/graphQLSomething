@@ -22,6 +22,8 @@ model Link {
   // 認証用
   postedBy    User? @relation(fields: [postedById], references: [id]) // LinkモデルのpostedByフィールドは、Userモデルとのリレーション（関係）を表しています。このフィールドは、LinkがどのUserによって投稿されたかを示すために使われる。
   postedById  Int? // foreign key Userモデルのidフィールドを参照している
+
+  votes Vote[]
 }
 
 model User {
@@ -30,6 +32,18 @@ model User {
   email String @unique
   password String
   links Link[]
+
+  votes Vote[]
+}
+
+model Vote {
+  id Int @id @default(autoincrement())
+  link Link @relation(fields: [linkId], references: [id])
+  linkId Int
+  user User @relation(fields: [userId], references: [id])
+  userId Int
+
+  @@unique([linkId, userId])
 }
 // ↑↓
 // npx prisma migrate dev
