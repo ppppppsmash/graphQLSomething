@@ -149,6 +149,32 @@ async function post(parent, args, context) {
   return newLink;
 }
 
+async function vote(parent, args, context) {
+  const userId = context.userId;
+  const vote = context.prisma.vote.findUnique({
+    where: {
+      linkId_userId: {
+        linkId: parseInt(args.linkId),
+        userId: userId
+      }
+    }
+  });
+
+  // 2回答票を防ぐ
+  if (Boolean(vote)) {
+    throw new Error(`この投稿にはすでに投票しました: ${args.linkId}`);
+  }
+
+  // 投票
+
+
+  if (!userId) {
+    console.log("userId", userId);
+    throw new Error("認証が必要です");
+  }
+  
+}
+
 module.exports = {
   signup,
   login,
