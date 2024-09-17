@@ -53,7 +53,7 @@ mutation {
 }
 
 
-// リアルタイム通信
+// リアルタイム通信①
 mutation {
   post(url: "yahoo.com", description: "Yahooサイト") {
     id
@@ -75,6 +75,36 @@ subscription {
   }
 }
 // ↑リアルタイム通信
+
+// リアルタイム通信②
+mutation {
+  vote(linkId: 1) {
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
+
+// ↑リアルタイム通信②
+
+subscription {
+  newVote {
+    id
+    link {
+      url
+      description
+    }
+    user {
+      name
+      email
+    }
+  }
+}
 
 ```
 
