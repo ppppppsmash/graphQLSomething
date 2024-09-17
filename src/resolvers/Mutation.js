@@ -160,23 +160,28 @@ async function vote(parent, args, context) {
     }
   });
 
-  // 2回答票を防ぐ
+  // 2回投票を防ぐ
   if (Boolean(vote)) {
     throw new Error(`この投稿にはすでに投票しました: ${args.linkId}`);
   }
 
-  // 投票
+  // 投票する
+  const newVote = context.prisma.vote.create({
+    data: {
+      user: { connect: { id: userId }},
+      link: { connect: { id: parseInt(args.linkId) }}
+    }
+  });
 
+  // 投票を送信
+  context.pubsub.publish("NEW_VOTE", newVote);
 
-  if (!userId) {
-    console.log("userId", userId);
-    throw new Error("認証が必要です");
-  }
-  
+  return newVote;
 }
 
 module.exports = {
   signup,
   login,
   post,
+  vote,
 };
