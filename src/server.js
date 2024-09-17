@@ -9,16 +9,15 @@ const prisma = new PrismaClient();
 
 const Query = require("./resolvers/Query");
 const Mutation = require("./resolvers/Mutation");
+const Subscription = require("./resolvers/Subscription");
 const Link = require("./resolvers/Link");
 const User = require("./resolvers/User");
-const Subscription = require("./resolvers/Subscription");
+const Vote = require("./resolvers/Vote");
 
 // サブスクリプション
 // Publisher送信者とSubscriber受信者の関係
 const { PubSub } = require("apollo-server");
 const pubsub = new PubSub();
-
-
 
 // リゾルバ関数、typeDefsの型に対して、何かの値を与える
 const resolvers = {
@@ -27,6 +26,7 @@ const resolvers = {
   Subscription,
   Link,
   User,
+  Vote,
 };
 
 // リゾルバに連携する
